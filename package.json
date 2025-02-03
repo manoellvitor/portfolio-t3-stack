@@ -22,6 +22,7 @@
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.1.7",
     "@t3-oss/env-nextjs": "^0.10.1",
+    "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.33.0",
