@@ -6,6 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../components/ui/tooltip";
 
 import { FaReact } from "react-icons/fa";
 import Link from "next/link";
@@ -31,7 +37,7 @@ function WorkingOn() {
               <CardHeader className="font-ocra text-2xl uppercase text-purple-600">
                 <CardTitle>{project.name}</CardTitle>
               </CardHeader>
-              <CardDescription className="font-courier text-md text-justify indent-4">
+              <CardDescription className="text-md text-justify indent-4 font-courier">
                 {project.description}
               </CardDescription>
               <CardContent className="mt-2 flex flex-col items-center">
@@ -41,15 +47,20 @@ function WorkingOn() {
                 <div className="mt-4 flex flex-row gap-4">
                   {project.stack.map((tech) => {
                     return (
-                      <div
-                        key={tech.id}
-                        title={tech.name}
-                        data-tooltip-placement="bottom"
-                      >
-                        <FaReact
-                          name={tech.icon}
-                          className="w-10 text-zinc-500 transition-colors duration-500 hover:text-zinc-300"
-                        />
+                      <div key={tech.id} title={tech.name}>
+                        <TooltipProvider delayDuration={0}>
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <FaReact
+                                name={tech.icon}
+                                className="w-10 text-zinc-500 transition-colors duration-500 hover:text-zinc-300"
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent side="bottom">
+                              <p>{tech.name}</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       </div>
                     );
                   })}
@@ -62,7 +73,7 @@ function WorkingOn() {
                       key={url.id}
                       href={url.url}
                       target="_blank"
-                      className="font-ocra flex w-full items-center justify-center gap-2 rounded-md border-2 border-green-700 p-2 text-sm uppercase text-zinc-300 transition-colors duration-300 hover:bg-green-700"
+                      className="flex w-full items-center justify-center gap-2 rounded-md border-2 border-green-700 p-2 font-ocra text-sm uppercase text-zinc-300 transition-colors duration-300 hover:bg-green-700"
                     >
                       {url.type}
                     </Link>
